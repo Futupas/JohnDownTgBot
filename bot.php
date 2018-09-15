@@ -42,6 +42,10 @@
         $readymsg = str_replace("(", "", $readymsg);
         $words = explode(" ", strtolower($readymsg));
 
+        file_put_contents('logs.txt', $msg."\n", FILE_APPEND);
+        file_put_contents('logs.txt', $readymsg."\n", FILE_APPEND);
+        file_put_contents('logs.txt', json_encode($words)."\n", FILE_APPEND);
+
         // ON PANCHIK / DOWN
         if (in_array("саня", $words)) {
             SendMessage($msg_chatid, "Саня лучший!");
