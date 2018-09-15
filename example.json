@@ -1,0 +1,26 @@
+{  
+   "update_id":427647914,
+   "message":{  
+      "message_id":119,
+      "from":{  
+         "id":387489833,
+         "is_bot":false,
+         "first_name":"\u0421\u0430\u0448\u0430 \u0411\u0430\u0440\u043e\u043d \u0411\u0456\u0442\u043a\u043e\u0435\u043d",
+         "username":"Terropen",
+         "language_code":"uk"
+      },
+      "chat":{  
+         "id":387489833,
+         "first_name":"\u0421\u0430\u0448\u0430 \u0411\u0430\u0440\u043e\u043d \u0411\u0456\u0442\u043a\u043e\u0435\u043d",
+         "username":"Terropen",
+         "type":"private"
+      },
+      "date":1537042217,
+      "voice":{  
+         "duration":3,
+         "mime_type":"audio/ogg",
+         "file_id":"AwADAgADVgIAAvxp6Uh1tAf8OSg8XwI",
+         "file_size":22156
+      }
+   }
+}
