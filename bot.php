@@ -1,4 +1,5 @@
 <?php
+    setlocale(LC_CTYPE, 'uk_UA');
     // 636469447:AAEnwoa5s_Ati_miiHQukaIhSalotJSk0Ts
     // api.telegram.org/bot636469447:AAEnwoa5s_Ati_miiHQukaIhSalotJSk0Ts
 
@@ -31,7 +32,7 @@
         };
 
         $msg = $requestData->message->text;
-        $readymsg = mb_strtolower($msg, 'UTF-8');
+        $readymsg = strtolower($msg);
         $readymsg = str_replace("  ", " ", $readymsg);
         $readymsg = str_replace("!", "", $readymsg);
         $readymsg = str_replace("?", "", $readymsg);
