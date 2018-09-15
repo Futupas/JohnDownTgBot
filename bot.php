@@ -15,7 +15,7 @@
     };
         
     function SendMessage($chatid, $text) {
-        $response = file_get_contents('https://api.telegram.org/bot636469447:AAEnwoa5s_Ati_miiHQukaIhSalotJSk0Ts/sendMessage?chat_id='.$chatid.'&text=you'.$text);
+        $response = file_get_contents('https://api.telegram.org/bot636469447:AAEnwoa5s_Ati_miiHQukaIhSalotJSk0Ts/sendMessage?chat_id='.$chatid.'&text='.$text);
     };
     function ReplyToMessage($chatid, $text, $msgtoreply) {
         $response = file_get_contents(
