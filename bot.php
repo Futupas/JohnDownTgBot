@@ -1,5 +1,6 @@
 <?php
-    setlocale(LC_CTYPE, 'uk_UA');
+    setlocale(LC_CTYPE, 'ru_RU');
+    file_put_contents('logs.txt', json_encode(system('locale -a')), FILE_APPEND);
     // 636469447:AAEnwoa5s_Ati_miiHQukaIhSalotJSk0Ts
     // api.telegram.org/bot636469447:AAEnwoa5s_Ati_miiHQukaIhSalotJSk0Ts
 
