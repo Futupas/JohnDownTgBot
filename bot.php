@@ -31,7 +31,7 @@
         };
 
         $msg = $requestData->message->text;
-        $readymsg = strtolower(utf8_encode($msg));
+        $readymsg = mb_strtolower($msg);
         $readymsg = str_replace("  ", " ", $readymsg);
         $readymsg = str_replace("!", "", $readymsg);
         $readymsg = str_replace("?", "", $readymsg);
