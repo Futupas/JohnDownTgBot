@@ -54,11 +54,11 @@
         $readymsg = str_replace(")", "", $readymsg);
         $readymsg = str_replace("(", "", $readymsg);
         file_put_contents("logs.txt", "readymsg ".$readymsg."\n", FILE_APPEND);
-        file_put_contents("logs.txt", "readymsg to lower ".strtolower_my($readymsg), FILE_APPEND);
+        file_put_contents("logs.txt", "readymsg to lower ".strtolower_my($readymsg)."\n", FILE_APPEND);
         file_put_contents("logs.txt", "readymsg ".$readymsg."\n", FILE_APPEND);
         $words = explode(" ", strtolower_my($readymsg));
 
-        function onWordExists() {
+        function onWordExists($readymsg) {
             file_put_contents("logs.txt", "On word Exists"."\n", FILE_APPEND);
             file_put_contents("logs.txt", "readymsg ".$readymsg."\n", FILE_APPEND);
             if (in_array("саня", $words)) {
@@ -131,7 +131,7 @@
             }
             
         };
-        onWordExists();
+        onWordExists($readymsg);
         
         
     } else {
