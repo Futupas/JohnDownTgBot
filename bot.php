@@ -56,7 +56,7 @@
 
         // ON WORD EXISTS
         // if (in_array("sendto11a", $words)) {
-        if (strpos($msg, "sendto11a " === 0))
+        if (strpos($msg, "sendto11a ") === 0)
             SendMessage(-1001359755141, substr($msg, 10));
             //chat 11 A
             exit(0);
