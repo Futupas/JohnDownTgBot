@@ -75,6 +75,7 @@
                 SendMessage($msg_chatid, "Панчик лучший");
                 exit(0);
             }
+            file_put_contents("logs.txt", strtolower_my($readymsg)."\n", FILE_APPEND);
             if (strtolower_my($readymsg) == "даун") {
                 SendMessage($msg_chatid, "Что тебе, сука, надо?");
                 exit(0);
