@@ -43,7 +43,7 @@
         };
 
         $msg = $requestData->message->text;
-        $readymsg = strtolower($msg);
+        // $readymsg = strtolower($msg);
         $readymsg = str_replace("  ", " ", $readymsg);
         $readymsg = str_replace("!", "", $readymsg);
         $readymsg = str_replace("?", "", $readymsg);
@@ -55,55 +55,55 @@
         $words = explode(" ", strtolower_my($readymsg));
 
         function onWordExists() {
-            if (in_array("саня", $words)) {
+            if (in_array("саня", array_values($words)) {
                 SendMessage($msg_chatid, "Саня лучший!");
                 exit(0);
             }
-            if (in_array("саша", $words)) {
+            if (in_array("саша", array_values($words))) {
                 SendMessage($msg_chatid, "Саша лучший!");
                 exit(0);
             }
-            if (in_array("панов", $words)) {
+            if (in_array("панов", array_values($words))) {
                 SendMessage($msg_chatid, "Панов лучший!");
                 exit(0);
             }
-            if (in_array("панчик", $words)) {
+            if (in_array("панчик", array_values($words))) {
                 SendMessage($msg_chatid, "Панчик лучший");
                 exit(0);
             }
-            if (in_array("панчік", $words)) {
+            if (in_array("панчік", array_values($words))) {
                 SendMessage($msg_chatid, "Панчик лучший");
                 exit(0);
             }
-            if (in_array("даун", $words) && count($words) == 1) {
+            if (strtolower_my($readymsg) == "даун") {
                 SendMessage($msg_chatid, "Что тебе, сука, надо?");
                 exit(0);
             }
-            if (in_array("джон", $words) && count($words) == 1) {
+            if (strtolower_my($readymsg) == "джон") {
                 SendMessage($msg_chatid, "Что тебе, сука, надо?");
                 exit(0);
             }
-            if (in_array("джонни", $words) && count($words) == 1) {
+            if (strtolower_my($readymsg) == "джонни") {
                 SendMessage($msg_chatid, "Что тебе, сука, надо?");
                 exit(0);
             }
-            if (in_array("down", $words) && count($words) == 1) {
+            if (strtolower_my($readymsg) == "down") {
                 SendMessage($msg_chatid, "Что тебе, сука, надо?");
                 exit(0);
             }
-            if (in_array("john", $words) && count($words) == 1) {
+            if (strtolower_my($readymsg) == "john") {
                 SendMessage($msg_chatid, "Что тебе, сука, надо?");
                 exit(0);
             }
-            if (in_array("johny", $words) && count($words) == 1) {
+            if (strtolower_my($readymsg) == "johny") {
                 SendMessage($msg_chatid, "Что тебе, сука, надо?");
                 exit(0);
             }
-            if (in_array("джонні", $words) && count($words) == 1) {
+            if (strtolower_my($readymsg) == "джонні") {
                 SendMessage($msg_chatid, "Что тебе, сука, надо?");
                 exit(0);
             }
-            if (in_array("дз", $words) && count($words) == 1) {
+            if (strtolower_my($readymsg) == "дз") {
                 SendMessage($msg_chatid, "Настя @Stacy2107, скинь людям домашнее задание, пожалуйста!&parse_mode=Markdowm");
                 exit(0);
             }
