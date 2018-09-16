@@ -119,6 +119,7 @@
                 $sendmsg = str_replace("даун", "", $msg);
                 $sendmsg = str_replace("Даун", "", $sendmsg);
                 $sendmsg = str_replace("ДАУН", "", $sendmsg);
+                $sendmsg = str_replace("  ", " ", $sendmsg);
                 $sendmsg = "Сам ".$sendmsg;
                 $sendmsg = str_replace("  ", " ", $sendmsg);
                 SendMessage($msg_chatid, $sendmsg);
@@ -132,6 +133,7 @@
                 $sendmsg = str_replace("джон", "", $msg);
                 $sendmsg = str_replace("Джон", "", $sendmsg);
                 $sendmsg = str_replace("ДЖОН", "", $sendmsg);
+                $sendmsg = str_replace("  ", " ", $sendmsg);
                 $sendmsg = "Сам ".$sendmsg;
                 $sendmsg = str_replace("  ", " ", $sendmsg);
                 SendMessage($msg_chatid, $sendmsg);
