@@ -54,59 +54,78 @@
         $readymsg = str_replace("(", "", $readymsg);
         $words = explode(" ", strtolower_my($readymsg));
 
-        file_put_contents('logs.txt', $msg."\n", FILE_APPEND);
-        file_put_contents('logs.txt', $readymsg."\n", FILE_APPEND);
-        file_put_contents('logs.txt', json_encode($words)."\n", FILE_APPEND);
-
-        // ON PANCHIK / DOWN
-        if (in_array("саня", $words)) {
-            SendMessage($msg_chatid, "Саня лучший!");
-            exit(0);
+        function onWordExists() {
+            if (in_array("саня", $words)) {
+                SendMessage($msg_chatid, "Саня лучший!");
+                exit(0);
+            }
+            if (in_array("саша", $words)) {
+                SendMessage($msg_chatid, "Саша лучший!");
+                exit(0);
+            }
+            if (in_array("панов", $words)) {
+                SendMessage($msg_chatid, "Панов лучший!");
+                exit(0);
+            }
+            if (in_array("панчик", $words)) {
+                SendMessage($msg_chatid, "Панчик лучший");
+                exit(0);
+            }
+            if (in_array("панчік", $words)) {
+                SendMessage($msg_chatid, "Панчик лучший");
+                exit(0);
+            }
+            if (in_array("даун", $words) && count($words) == 1) {
+                SendMessage($msg_chatid, "Что тебе, сука, надо?");
+                exit(0);
+            }
+            if (in_array("джон", $words) && count($words) == 1) {
+                SendMessage($msg_chatid, "Что тебе, сука, надо?");
+                exit(0);
+            }
+            if (in_array("джонни", $words) && count($words) == 1) {
+                SendMessage($msg_chatid, "Что тебе, сука, надо?");
+                exit(0);
+            }
+            if (in_array("down", $words) && count($words) == 1) {
+                SendMessage($msg_chatid, "Что тебе, сука, надо?");
+                exit(0);
+            }
+            if (in_array("john", $words) && count($words) == 1) {
+                SendMessage($msg_chatid, "Что тебе, сука, надо?");
+                exit(0);
+            }
+            if (in_array("johny", $words) && count($words) == 1) {
+                SendMessage($msg_chatid, "Что тебе, сука, надо?");
+                exit(0);
+            }
+            if (in_array("джонні", $words) && count($words) == 1) {
+                SendMessage($msg_chatid, "Что тебе, сука, надо?");
+                exit(0);
+            }
+            if (in_array("дз", $words) && count($words) == 1) {
+                SendMessage($msg_chatid, "Настя @Stacy2107, скинь людям домашнее задание, пожалуйста!&parse_mode=Markdowm");
+                exit(0);
+            }
+            if (in_array("sendto11a", $words) && count($words) == 1) {
+                SendMessage($msg_chatid, substr($msg, 10));
+                //chat 11 A
+                exit(0);
+                if (in_array("даун", $words)) {
+                    SendMessage($msg_chatid, substr($msg, 10));
+                    //chat 11 A
+                    exit(0);
+                    if (strpos($msg, "?") !== false) { //constains
+    
+                    } else { // doesnt contain
+    
+                    }
+                }
+            }
+            
         }
-        if (in_array("саша", $words)) {
-            SendMessage($msg_chatid, "Саша лучший!");
-            exit(0);
-        }
-        if (in_array("панов", $words)) {
-            SendMessage($msg_chatid, "Панов лучший!");
-            exit(0);
-        }
-        if (in_array("панчик", $words)) {
-            SendMessage($msg_chatid, "Панчик лучший");
-            exit(0);
-        }
-        if (in_array("панчік", $words)) {
-            SendMessage($msg_chatid, "Панчик лучший");
-            exit(0);
-        }
-        if (in_array("даун", $words) && count($words) == 1) {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (in_array("джон", $words) && count($words) == 1) {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (in_array("джонни", $words) && count($words) == 1) {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (in_array("down", $words) && count($words) == 1) {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (in_array("john", $words) && count($words) == 1) {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (in_array("johny", $words) && count($words) == 1) {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (in_array("джонні", $words) && count($words) == 1) {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
+        OnWordExists();
+        
         
     } else {
         echo("This is Johny Down bot");
