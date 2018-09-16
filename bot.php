@@ -55,7 +55,8 @@
         $words = explode(" ", strtolower_my($readymsg));
 
         function onWordExists() {
-            if (in_array("саня", array_values($words))) {
+            file_put_contents("logs.txt", "On word Exists"."\n", FILE_APPEND);
+            if (in_array("саня", $words)) {
                 SendMessage($msg_chatid, "Саня лучший!");
                 exit(0);
             }
@@ -124,7 +125,7 @@
                 }
             }
             
-        }
+        };
         onWordExists();
         
         
