@@ -44,7 +44,6 @@
 
         $msg = $requestData->message->text;
         $readymsg = strtolower($msg);
-        file_put_contents("logs.txt", "readymsg ".$readymsg."\n", FILE_APPEND);
         $readymsg = str_replace("  ", " ", $readymsg);
         $readymsg = str_replace("!", "", $readymsg);
         $readymsg = str_replace("?", "", $readymsg);
@@ -56,6 +55,11 @@
         $words = explode(" ", strtolower_my($readymsg));
 
         // ON WORD EXISTS
+        if (in_array("sendto11a", $words) && count($words) == 1) {
+            SendMessage($msg_chatid, substr($msg, 10));
+            //chat 11 A
+            exit(0);
+        }
         if (in_array("саня", $words)) {
             SendMessage($msg_chatid, "Саня лучший!");
             exit(0);
@@ -108,22 +112,17 @@
             SendMessage($msg_chatid, "Настя @Stacy2107, скинь людям домашнее задание, пожалуйста!"); //&parse_mode=Markdowm
             exit(0);
         }
-        if (in_array("sendto11a", $words) && count($words) == 1) {
-            SendMessage($msg_chatid, substr($msg, 10));
-            //chat 11 A
-            exit(0);
-            if (in_array("даун", $words)) {
-                SendMessage($msg_chatid, substr($msg, 10));
-                //chat 11 A
-                exit(0);
-                if (strpos($msg, "?") !== false) { //constains
-
-                } else { // doesnt contain
-
-                }
+        if (in_array("даун", $words)) {
+            if (strpos($msg, "?") !== false) { //constains
+                SendMessage($msg_chatid, "Откуда я, нахуй, знаю?!");
+            } else { // doesnt contain
+                $sendmsg = str_replace("даун", "", $msg);
+                $sendmsg = str_replace("Даун", "", $sendmsg);
+                $sendmsg = str_replace("ДАУН", "", $sendmsg);
+                $sendmsg = str_replace("  ", " ", $sendmsg);
+                SendMessage($msg_chatid, "Сам ".$sendmsg);
             }
         }
-        
         
     } else {
         echo("This is Johny Down bot");
