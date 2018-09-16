@@ -125,7 +125,7 @@
             }
             
         }
-        OnWordExists();
+        onWordExists();
         
         
     } else {
