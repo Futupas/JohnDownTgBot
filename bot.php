@@ -119,9 +119,24 @@
                 $sendmsg = str_replace("даун", "", $msg);
                 $sendmsg = str_replace("Даун", "", $sendmsg);
                 $sendmsg = str_replace("ДАУН", "", $sendmsg);
+                $sendmsg = "Сам ".$sendmsg;
                 $sendmsg = str_replace("  ", " ", $sendmsg);
-                SendMessage($msg_chatid, "Сам ".$sendmsg);
+                SendMessage($msg_chatid, $sendmsg);
             }
+            exit(0);
+        }
+        if (in_array("джон", $words)) {
+            if (strpos($msg, "?") !== false) { //constains
+                SendMessage($msg_chatid, "Откуда я, нахуй, знаю?!");
+            } else { // doesnt contain
+                $sendmsg = str_replace("джон", "", $msg);
+                $sendmsg = str_replace("Джон", "", $sendmsg);
+                $sendmsg = str_replace("ДЖОН", "", $sendmsg);
+                $sendmsg = "Сам ".$sendmsg;
+                $sendmsg = str_replace("  ", " ", $sendmsg);
+                SendMessage($msg_chatid, $sendmsg);
+            }
+            exit(0);
         }
         
     } else {
