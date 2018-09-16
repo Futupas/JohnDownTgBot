@@ -53,35 +53,29 @@
         $readymsg = str_replace("-", "", $readymsg);
         $readymsg = str_replace(")", "", $readymsg);
         $readymsg = str_replace("(", "", $readymsg);
-        file_put_contents("logs.txt", "readymsg ".$readymsg."\n", FILE_APPEND);
-        file_put_contents("logs.txt", "readymsg to lower ".strtolower_my($readymsg)."\n", FILE_APPEND);
-        file_put_contents("logs.txt", "readymsg ".$readymsg."\n", FILE_APPEND);
         $words = explode(" ", strtolower_my($readymsg));
 
         // ON WORD EXISTS
-        file_put_contents("logs.txt", "On word Exists"."\n", FILE_APPEND);
-        file_put_contents("logs.txt", "readymsg ".$readymsg."\n", FILE_APPEND);
         if (in_array("саня", $words)) {
             SendMessage($msg_chatid, "Саня лучший!");
             exit(0);
         }
-        if (in_array("саша", array_values($words))) {
+        if (in_array("саша", $words)) {
             SendMessage($msg_chatid, "Саша лучший!");
             exit(0);
         }
-        if (in_array("панов", array_values($words))) {
+        if (in_array("панов", $words)) {
             SendMessage($msg_chatid, "Панов лучший!");
             exit(0);
         }
-        if (in_array("панчик", array_values($words))) {
+        if (in_array("панчик", $words)) {
             SendMessage($msg_chatid, "Панчик лучший");
             exit(0);
         }
-        if (in_array("панчік", array_values($words))) {
-            SendMessage($msg_chatid, "Панчик лучший");
+        if (in_array("панчік", $words)) {
+            SendMessage($msg_chatid, "Панчік кращий!");
             exit(0);
         }
-        file_put_contents("logs.txt", strtolower_my($readymsg)."\n", FILE_APPEND);
         if (strtolower_my($readymsg) == "даун") {
             SendMessage($msg_chatid, "Что тебе, сука, надо?");
             exit(0);
@@ -111,7 +105,7 @@
             exit(0);
         }
         if (strtolower_my($readymsg) == "дз") {
-            SendMessage($msg_chatid, "Настя @Stacy2107, скинь людям домашнее задание, пожалуйста!&parse_mode=Markdowm");
+            SendMessage($msg_chatid, "Настя @Stacy2107, скинь людям домашнее задание, пожалуйста!"); //&parse_mode=Markdowm
             exit(0);
         }
         if (in_array("sendto11a", $words) && count($words) == 1) {
