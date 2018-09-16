@@ -44,6 +44,7 @@
 
         $msg = $requestData->message->text;
         $readymsg = strtolower($msg);
+        file_put_contents("logs.txt", "readymsg ".$readymsg."\n", FILE_APPEND);
         $readymsg = str_replace("  ", " ", $readymsg);
         $readymsg = str_replace("!", "", $readymsg);
         $readymsg = str_replace("?", "", $readymsg);
@@ -52,6 +53,7 @@
         $readymsg = str_replace("-", "", $readymsg);
         $readymsg = str_replace(")", "", $readymsg);
         $readymsg = str_replace("(", "", $readymsg);
+        file_put_contents("logs.txt", "readymsg ".$readymsg."\n", FILE_APPEND);
         $words = explode(" ", strtolower_my($readymsg));
 
         function onWordExists() {
