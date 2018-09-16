@@ -54,6 +54,8 @@
         $readymsg = str_replace(")", "", $readymsg);
         $readymsg = str_replace("(", "", $readymsg);
         file_put_contents("logs.txt", "readymsg ".$readymsg."\n", FILE_APPEND);
+        file_put_contents("logs.txt", "readymsg to lower ".strtolower_my($readymsg), FILE_APPEND);
+        file_put_contents("logs.txt", "readymsg ".$readymsg."\n", FILE_APPEND);
         $words = explode(" ", strtolower_my($readymsg));
 
         function onWordExists() {
