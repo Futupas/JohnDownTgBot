@@ -52,7 +52,8 @@
         $readymsg = str_replace("-", "", $readymsg);
         $readymsg = str_replace(")", "", $readymsg);
         $readymsg = str_replace("(", "", $readymsg);
-        $words = explode(" ", strtolower_my($readymsg));
+        $readylower = strtolower_my($readymsg);
+        $words = explode(" ", $readylower);
 
         // ON WORD EXISTS
         // if (in_array("sendto11a", $words)) {
@@ -81,35 +82,11 @@
             SendMessage($msg_chatid, "Панчік кращий!");
             exit(0);
         }
-        if (strtolower_my($readymsg) == "даун") {
+        if ($readylower == "даун" || $readylower == "джон" || $readylower == "джонни" || $readylower == "down" || $readylower == "джонні") {
             SendMessage($msg_chatid, "Что тебе, сука, надо?");
             exit(0);
         }
-        if (strtolower_my($readymsg) == "джон") {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (strtolower_my($readymsg) == "джонни") {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (strtolower_my($readymsg) == "down") {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (strtolower_my($readymsg) == "john") {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (strtolower_my($readymsg) == "johny") {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (strtolower_my($readymsg) == "джонні") {
-            SendMessage($msg_chatid, "Что тебе, сука, надо?");
-            exit(0);
-        }
-        if (strtolower_my($readymsg) == "дз") {
+        if (count($words) == 1 && strpos($readylower, 'дз') !== false) {
             SendMessage($msg_chatid, "Настя @Stacy2107, скинь людям домашнее задание, пожалуйста!"); //&parse_mode=Markdowm
             exit(0);
         }
@@ -141,7 +118,38 @@
             }
             exit(0);
         }
-        
+        if (strpos($readylower, 'слава') !== false && (strpos($readylower, 'украине') !== false || strpos($readylower, 'україні') !== false)) {
+            ReplyToMessage($msg_chatid, "Героям слава!", $msg_id);
+            exit(0);
+        }
+        if (strpos($readylower, 'воскрес') !== false && (strpos($readylower, 'иисус') || strpos($readylower, 'исус') !== false)) {
+            ReplyToMessage($msg_chatid, "Воистину Воскрес)", $msg_id);
+            exit(0);
+        }
+        if (strpos($readylower, 'воскрес') !== false && strpos($readylower, 'ісус') !== false) {
+            ReplyToMessage($msg_chatid, "Воістину воскрес)", $msg_id);
+            exit(0);
+        }
+        if (count($words) <= 2) {
+            if (count($words) == 1 && strpos($words[0], 'спасибо') !== false) {
+                ReplyToMessage($msg_chatid, "Пожалуйста.", $msg_id);
+                exit(0);
+            }
+            if (count($words) == 2 && (strpos($words[0], 'спасибо') !== false || strpos($words[1], 'спасибо') !== false)) {
+                ReplyToMessage($msg_chatid, "Пожалуйста.", $msg_id);
+                exit(0);
+            }
+        }
+        if (count($words) <= 2) {
+            if (count($words) == 1 && strpos($words[0], 'дякую') !== false) {
+                ReplyToMessage($msg_chatid, "Будь ласка.", $msg_id);
+                exit(0);
+            }
+            if (count($words) == 2 && (strpos($words[0], 'дякую') !== false || strpos($words[1], 'дякую') !== false)) {
+                ReplyToMessage($msg_chatid, "Будь ласка.", $msg_id);
+                exit(0);
+            }
+        }
     } else {
         echo("This is Johny Down bot");
     }
