@@ -130,25 +130,13 @@
             ReplyToMessage($msg_chatid, "Воістину воскрес)", $msg_id);
             exit(0);
         }
-        if (count($words) <= 2) {
-            if (count($words) == 1 && strpos($words[0], 'спасибо') !== false) {
-                ReplyToMessage($msg_chatid, "Пожалуйста.", $msg_id);
-                exit(0);
-            }
-            if (count($words) == 2 && (strpos($words[0], 'спасибо') !== false || strpos($words[1], 'спасибо') !== false)) {
-                ReplyToMessage($msg_chatid, "Пожалуйста.", $msg_id);
-                exit(0);
-            }
+        if (count($words) <= 2 && strpos($readylower, 'спасибо') !== false) {
+            ReplyToMessage($msg_chatid, "Пожалуйста.", $msg_id);
+            exit(0);
         }
-        if (count($words) <= 2) {
-            if (count($words) == 1 && strpos($words[0], 'дякую') !== false) {
-                ReplyToMessage($msg_chatid, "Будь ласка.", $msg_id);
-                exit(0);
-            }
-            if (count($words) == 2 && (strpos($words[0], 'дякую') !== false || strpos($words[1], 'дякую') !== false)) {
-                ReplyToMessage($msg_chatid, "Будь ласка.", $msg_id);
-                exit(0);
-            }
+        if (count($words) <= 2 && strpos($readylower, 'дякую') !== false) {
+            ReplyToMessage($msg_chatid, "Будь ласка.", $msg_id);
+            exit(0);
         }
     } else {
         echo("This is Johny Down bot");
