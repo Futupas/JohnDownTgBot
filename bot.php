@@ -1,6 +1,5 @@
 <?php
-    // 636469447:AAEnwoa5s_Ati_miiHQukaIhSalotJSk0Ts
-    // api.telegram.org/bot636469447:AAEnwoa5s_Ati_miiHQukaIhSalotJSk0Ts
+    // me: 387489833
     
     function strtolower_my($str) {
         $str2 = strtolower($str);
@@ -15,11 +14,11 @@
     };
         
     function SendMessage($chatid, $text) {
-        $response = file_get_contents('https://api.telegram.org/bot636469447:AAEnwoa5s_Ati_miiHQukaIhSalotJSk0Ts/sendMessage?chat_id='.$chatid.'&text='.$text);
+        $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?chat_id='.$chatid.'&text='.$text);
     };
     function ReplyToMessage($chatid, $text, $msgtoreply) {
         $response = file_get_contents(
-            'https://api.telegram.org/bot636469447:AAEnwoa5s_Ati_miiHQukaIhSalotJSk0Ts/sendMessage?chat_id='.$chatid.'&text='.$text.'&reply_to_message_id='.$msgtoreply
+            'https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?chat_id='.$chatid.'&text='.$text.'&reply_to_message_id='.$msgtoreply
         );
     };
 
@@ -58,8 +57,17 @@
         // ON WORD EXISTS
         // if (in_array("sendto11a", $words)) {
         if (strpos($msg, "sendto11a ") === 0) {
-            SendMessage(-1001359755141, substr($msg, 10));
+            SendMessage(getenv('11a_id'), substr($msg, 10));
             //chat 11 A
+            exit(0);
+        }
+        // if (in_array("гугл", $words) && in_array("загугли", $words)) {
+        // if (in_array("гугл", $words)) {
+        if (in_array("загугли", $words)) {
+            $googlequery = str_replace("загугли", "", $readylower);
+            //https://www.google.com/search?q=google%20query
+            $response = file_get_html('https://www.google.com/search?q='.$googlequery);
+            SendMessage($msg_chatid, "Саня лучший!");
             exit(0);
         }
         if (in_array("саня", $words)) {
@@ -136,6 +144,18 @@
         }
         if (count($words) <= 2 && strpos($readylower, 'дякую') !== false) {
             ReplyToMessage($msg_chatid, "Будь ласка.", $msg_id);
+            exit(0);
+        }
+
+        if ((strpos($readylower, 'внатуре') !== false || strpos($readylower, 'рили') !== false) && strpos($readylower, '?') !== false) {
+            $stickerset_str = file_get_contents(
+                'https://api.telegram.org/bot'.getenv('bot_token').'/getStickerSet?name=XXXDreamTeam'
+            );
+            $stickerset = json_decode($stickerset_str);
+            $sticker_file_id = $stickerset->result->stickers[5]->file_id;
+            file_get_contents(
+                'https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?chat_id='.$chatid.'&sticker='.$sticker_file_id.'&reply_to_message_id='.$msgtoreply
+            );
             exit(0);
         }
     } else {
