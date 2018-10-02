@@ -84,7 +84,14 @@
         if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words) || in_array("джонні", $words)) &&
             (in_array("сказка", $words) || in_array("казка", $words) || in_array("сказку", $words) || in_array("казку", $words)) ) {
             $response = file_get_contents(
-                'https://api.telegram.org/bot'.getenv('bot_token').'/sendVoice?chat_id='.$msg_chatid.'&caption=Гамлєт&voice=CQADAgADMQIAAqG5mUnTxv6sFqW5MAI'
+                'https://api.telegram.org/bot'.getenv('bot_token').'/sendAudio?chat_id='.$msg_chatid.'&audio=CQADAgADMgIAAqG5mUlzxUSxeBo4YQI'
+            );
+            exit(0);
+        }
+        if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words) || in_array("джонні", $words)) &&
+            (in_array("история", $words) || in_array("историю", $words) || in_array("історія", $words) || in_array("історію", $words)) ) {
+            $response = file_get_contents(
+                'https://api.telegram.org/bot'.getenv('bot_token').'/sendVoice?chat_id='.$msg_chatid.'&voice=CQADAgADMwIAAqG5mUmxJU-Lfr2NogI'
             );
             exit(0);
         }
