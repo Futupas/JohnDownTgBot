@@ -61,15 +61,6 @@
             //chat 11 A
             exit(0);
         }
-        // if (in_array("гугл", $words) && in_array("загугли", $words)) {
-        // if (in_array("гугл", $words)) {
-        if (in_array("загугли", $words)) {
-            $googlequery = str_replace("загугли", "", $readylower);
-            //https://www.google.com/search?q=google%20query
-            $response = file_get_html('https://www.google.com/search?q='.$googlequery);
-            SendMessage($msg_chatid, "Саня лучший!");
-            exit(0);
-        }
         if (in_array("саня", $words)) {
             SendMessage($msg_chatid, "Саня лучший!");
             exit(0);
@@ -88,6 +79,13 @@
         }
         if (in_array("панчік", $words)) {
             SendMessage($msg_chatid, "Панчік кращий!");
+            exit(0);
+        }
+        if ((in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words) || in_array("джонні", $words)) &&
+            (in_array("сказка", $words) || in_array("казка", $words) || in_array("сказку", $words) || in_array("казку", $words)) {
+            $response = file_get_contents(
+                'https://api.telegram.org/bot'.getenv('bot_token').'/sendVoice?chat_id='.$msg_chatid.'&caption=Гамлєт&voice=CQADAgADMQIAAqG5mUnTxv6sFqW5MAI'
+            );
             exit(0);
         }
         if ($readylower == "даун" || $readylower == "джон" || $readylower == "джонни" || $readylower == "down" || $readylower == "джонні") {
