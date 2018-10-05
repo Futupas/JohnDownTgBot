@@ -151,18 +151,6 @@
             ReplyToMessage($msg_chatid, "Будь ласка.", $msg_id);
             exit(0);
         }
-
-        if ((strpos($readylower, 'внатуре') !== false || strpos($readylower, 'рили') !== false) && strpos($readylower, '?') !== false) {
-            $stickerset_str = file_get_contents(
-                'https://api.telegram.org/bot'.getenv('bot_token').'/getStickerSet?name=XXXDreamTeam'
-            );
-            $stickerset = json_decode($stickerset_str);
-            $sticker_file_id = $stickerset->result->stickers[5]->file_id;
-            file_get_contents(
-                'https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?chat_id='.$chatid.'&sticker='.$sticker_file_id.'&reply_to_message_id='.$msgtoreply
-            );
-            exit(0);
-        }
     } else {
         echo("This is Johny Down bot");
     }
