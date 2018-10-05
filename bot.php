@@ -74,7 +74,7 @@
                 $_SESSION['zapominat_messages_'.$memkey] = array();
                 file_put_contents('logs.txt', 'zapominat'."\n\n", FILE_APPEND);
         }
-        if (isset($_SESSION['zapominat']) && $_SESSION['zapominat'] === true) {
+        else if (isset($_SESSION['zapominat']) && $_SESSION['zapominat'] === true) {
             file_put_contents('logs.txt', '2if'."\n", FILE_APPEND);
             $memkey = $_SESSION['zapominat_memkey'];
             if ($_SESSION['zapominat_senderid_'.$memkey] == $msg_senderid) {
@@ -87,7 +87,7 @@
                 }
             }
         }
-        if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
+        else if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
             (in_array("скинь", $words) || in_array("кинь", $words)) && !($_SESSION['zapominat'] === true) ) {
                 $memkey = $words[2];
                 $fromchat = $_SESSION['zapominat_chatid_'.$memkey];
