@@ -63,6 +63,7 @@
             (in_array("запомни", $words)) && !($_SESSION['zapominat'] === true) ) {
                 $_SESSION['zapominat'] = true;
                 $memkey = $words[2];
+                file_put_contents('logs.txt', $memkey."\n\n", FILE_APPEND);
                 $_SESSION['zapominat_memkey'] = $memkey;
                 $_SESSION['zapominat_chatid_'.$memkey] = $msg_chatid;
                 $_SESSION['zapominat_senderid_'.$memkey] = $msg_senderid;
