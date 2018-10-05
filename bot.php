@@ -58,7 +58,7 @@
         // ON WORD EXISTS
         
         session_start();
-        file_put_contents('logs.txt', $_SESSION."\n\n", FILE_APPEND);
+        file_put_contents('logs.txt', print_r($_SESSION, true)."\n\n", FILE_APPEND);
         if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
             (in_array("запомни", $words)) && !($_SESSION['zapominat'] === true) ) {
                 $_SESSION['zapominat'] = true;
