@@ -29,6 +29,7 @@
 
         $msg_id = $requestData->message->message_id;
         $msg_chatid = $requestData->message->chat->id;
+        $msg_senderid = $requestData->message->from->id;
         $msg_sendername = $requestData->message->from->first_name;
 
         // ON VOICE OR VIDEO
@@ -56,9 +57,37 @@
 
         // ON WORD EXISTS
         
+        session_start();
         if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
-            (in_array("запомни", $words)) ) {
+            (in_array("запомни", $words)) && !($_SESSION['zapominat'] === true) ) {
                 $_SESSION['zapominat'] = true;
+                $memkey = $words[2];
+                $_SESSION['zapominat_memkey'] = $memkey;
+                $_SESSION['zapominat_chatid_'.$memkey] = $msg_chatid;
+                $_SESSION['zapominat_senderid_'.$memkey] = $msg_senderid;
+                $_SESSION['zapominat_messages_'.$memkey] = array();
+        }
+        if (isset($_SESSION['zapominat']) && $_SESSION['zapominat'] === true) {
+            $memkey = $_SESSION['zapominat_memkey'];
+            if ($_SESSION['zapominat_senderid_'.$memkey] == $msg_senderid) {
+                if (in_array("запомнил", $words)) {
+                    $_SESSION['zapominat'] = false;
+                    SendMessage($msg_chatid, 'Запомнил');
+                } else {
+                    $_SESSION['zapominat_messages_'.$memkey][] = $msg_id;
+                }
+            }
+        }
+        if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
+            (in_array("скинь", $words) || in_array("кинь", $words)) && !($_SESSION['zapominat'] === true) ) {
+                $memkey = $words[2];
+                $fromchat = $_SESSION['zapominat_chatid_'.$memkey];
+                $memmessages = $_SESSION['zapominat_messages_'.$memkey];
+                foreach($memmessages as $msgmemid) {
+                    $response = file_get_contents(
+                        'https://api.telegram.org/bot'.getenv('bot_token').'/forwardMessage?chat_id='.$msg_chatid.'&from_chat_id='.$fromchat.'&message_id='.$msgmemid
+                    );
+                }
         }
 
         if (strpos($msg, "sendto11a ") === 0) {
