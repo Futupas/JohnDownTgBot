@@ -58,49 +58,7 @@
         // ON WORD EXISTS
         
         session_start();
-        file_put_contents('logs.txt', print_r($_SESSION, true)."\n", FILE_APPEND);
-        file_put_contents('logs.txt', ($_SESSION['zapominat'] == true ? 'true' : 'false')."\n\n", FILE_APPEND);
-        
-        if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
-            (in_array("запомни", $words)) && !($_SESSION['zapominat'] == true) ) {
-                file_put_contents('logs.txt', '1if'."\n\n", FILE_APPEND);
-                file_put_contents('logs.txt', 'truefalse'."\n", FILE_APPEND);
-                file_put_contents('logs.txt', ($_SESSION['zapominat'] == true ? 'true' : 'false')."\n", FILE_APPEND);
-                $_SESSION['zapominat'] = true; 
-                file_put_contents('logs.txt', ($_SESSION['zapominat'] == true ? 'true' : 'false')."\n", FILE_APPEND);
-                $memkey = $words[2];
-                file_put_contents('logs.txt', $memkey."\n\n", FILE_APPEND);
-                $_SESSION['zapominat_memkey'] = $memkey;
-                $_SESSION['zapominat_chatid_'.$memkey] = $msg_chatid;
-                file_put_contents('logs.txt', $_SESSION['zapominat_chatid_'.$memkey]."\n\n", FILE_APPEND);
-                $_SESSION['zapominat_senderid_'.$memkey] = $msg_senderid;
-                $_SESSION['zapominat_messages_'.$memkey] = array();
-                file_put_contents('logs.txt', 'zapominat'."\n\n", FILE_APPEND);
-        }
-        else if ($_SESSION['zapominat'] === true) {
-            file_put_contents('logs.txt', '2if'."\n", FILE_APPEND);
-            $memkey = $_SESSION['zapominat_memkey'];
-            if ($_SESSION['zapominat_senderid_'.$memkey] == $msg_senderid) {
-                if (in_array("запомнил", $words)) {
-                    $_SESSION['zapominat'] = false;
-                    SendMessage($msg_chatid, 'Запомнил');
-                } else {
-                    $_SESSION['zapominat_messages_'.$memkey][] = $msg_id;
-                    file_put_contents('logs.txt', $_SESSION['zapominat_messages_'.$memkey]."\n\n", FILE_APPEND);
-                }
-            }
-        }
-        else if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
-            (in_array("скинь", $words) || in_array("кинь", $words)) && !($_SESSION['zapominat'] === true) ) {
-                $memkey = $words[2];
-                $fromchat = $_SESSION['zapominat_chatid_'.$memkey];
-                $memmessages = $_SESSION['zapominat_messages_'.$memkey];
-                foreach($memmessages as $msgmemid) {
-                    $response = file_get_contents(
-                        'https://api.telegram.org/bot'.getenv('bot_token').'/forwardMessage?chat_id='.$msg_chatid.'&from_chat_id='.$fromchat.'&message_id='.$msgmemid
-                    );
-                }
-        }
+        //
 
         if (strpos($msg, "sendto11a ") === 0) {
             SendMessage(getenv('11a_id'), substr($msg, 10));
