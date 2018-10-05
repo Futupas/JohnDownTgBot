@@ -58,6 +58,7 @@
         // ON WORD EXISTS
         
         session_start();
+        file_put_contents('logs.txt', $_SESSION['zapominat']."\n\n", FILE_APPEND);
         if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
             (in_array("запомни", $words)) && !($_SESSION['zapominat'] === true) ) {
                 $_SESSION['zapominat'] = true;
@@ -66,8 +67,10 @@
                 $_SESSION['zapominat_chatid_'.$memkey] = $msg_chatid;
                 $_SESSION['zapominat_senderid_'.$memkey] = $msg_senderid;
                 $_SESSION['zapominat_messages_'.$memkey] = array();
+                file_put_contents('logs.txt', 'zapominat'."\n\n", FILE_APPEND);
         }
         if (isset($_SESSION['zapominat']) && $_SESSION['zapominat'] === true) {
+            file_put_contents('logs.txt', 'zapomnil'."\n\n", FILE_APPEND);
             $memkey = $_SESSION['zapominat_memkey'];
             if ($_SESSION['zapominat_senderid_'.$memkey] == $msg_senderid) {
                 if (in_array("запомнил", $words)) {
