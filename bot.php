@@ -66,6 +66,7 @@
                 file_put_contents('logs.txt', $memkey."\n\n", FILE_APPEND);
                 $_SESSION['zapominat_memkey'] = $memkey;
                 $_SESSION['zapominat_chatid_'.$memkey] = $msg_chatid;
+                file_put_contents('logs.txt', $_SESSION['zapominat_chatid_'.$memkey]."\n\n", FILE_APPEND);
                 $_SESSION['zapominat_senderid_'.$memkey] = $msg_senderid;
                 $_SESSION['zapominat_messages_'.$memkey] = array();
                 file_put_contents('logs.txt', 'zapominat'."\n\n", FILE_APPEND);
