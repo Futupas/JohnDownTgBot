@@ -64,7 +64,10 @@
         if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
             (in_array("запомни", $words)) && !($_SESSION['zapominat'] == true) ) {
                 file_put_contents('logs.txt', '1if'."\n", FILE_APPEND);
+                file_put_contents('logs.txt', 'truefalse'."\n", FILE_APPEND);
+                file_put_contents('logs.txt', ($_SESSION['zapominat'] == true ? 'true' : 'false')."\n", FILE_APPEND);
                 $_SESSION['zapominat'] = true;
+                file_put_contents('logs.txt', ($_SESSION['zapominat'] == true ? 'true' : 'false')."\n", FILE_APPEND);
                 $memkey = $words[2];
                 file_put_contents('logs.txt', $memkey."\n\n", FILE_APPEND);
                 $_SESSION['zapominat_memkey'] = $memkey;
