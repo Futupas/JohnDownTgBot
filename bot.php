@@ -55,7 +55,12 @@
         $words = explode(" ", $readylower);
 
         // ON WORD EXISTS
-        // if (in_array("sendto11a", $words)) {
+        
+        if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
+            (in_array("запомни", $words)) ) {
+                $_SESSION['zapominat'] = true;
+        }
+
         if (strpos($msg, "sendto11a ") === 0) {
             SendMessage(getenv('11a_id'), substr($msg, 10));
             //chat 11 A
