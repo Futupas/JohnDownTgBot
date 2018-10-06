@@ -60,7 +60,7 @@
         session_start();
         if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
             (in_array("запомни", $words) ) {
-                if (property_exists($requestData->message, 'reply_to_message') {
+                if (property_exists($requestData->message, 'reply_to_message')) {
                     $memmsg = $words[2];
                     $_SESSION['zapomni_msg_'.$memmsg] = $requestData->message->reply_to_message->message_id;
                     $_SESSION['zapomni_chatid_'.$memmsg] = $requestData->message->reply_to_message->chat->id;
