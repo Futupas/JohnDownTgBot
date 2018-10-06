@@ -64,6 +64,7 @@
                 $memmsg = $words[2];
                 $_SESSION['zapomni_msg_'.$memmsg] = $requestData->message->reply_to_message->message_id;
                 $_SESSION['zapomni_chatid_'.$memmsg] = $requestData->message->reply_to_message->chat->id;
+                file_put_contents('logs.txt', '1if'."\n", FILE_APPEND);
                 file_put_contents('logs.txt', $_SESSION['zapomni_chatid_'.$memmsg]."\n\n", FILE_APPEND);
             }
         }
@@ -72,6 +73,7 @@
             $memmsg = $words[2];
             $memmessid = $_SESSION['zapomni_msg_'.$memmsg];
             $oldchatid = $_SESSION['zapomni_chatid_'.$memmsg];
+            file_put_contents('logs.txt', '2if'."\n", FILE_APPEND);
             file_put_contents('logs.txt', $_SESSION['zapomni_chatid_'.$memmsg]."\n\n", FILE_APPEND);
             $response = file_get_contents(
                 'https://api.telegram.org/bot'.getenv('bot_token').'/forwardMessage?chat_id='.$msg_chatid.'&from_chat_id='.$oldchatid.'&message_id='.$memmessid
