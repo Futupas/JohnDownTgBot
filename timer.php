@@ -23,16 +23,16 @@
     //     sleep(1860);
     // }
 
-    $w2 = new EvTimer(2, 1, function ($w) {
-        echo "is called every second, is launched after 2 seconds\n";
-        echo "iteration = ", Ev::iteration(), PHP_EOL;
-        file_put_contents('timerlogs.txt', date("Y-m-d H:i:s")."   timer"."\n\n", FILE_APPEND);
-        // Stop the watcher after 5 iterations
-        // Ev::iteration() == 5 and $w->stop();
-        // Stop the watcher if further calls cause more than 10 iterations
-        // Ev::iteration() >= 10 and $w->stop();
-    });
-    Ev::run();
+    // $w2 = new EvTimer(2, 1, function ($w) {
+    //     echo "is called every second, is launched after 2 seconds\n";
+    //     echo "iteration = ", Ev::iteration(), PHP_EOL;
+    //     file_put_contents('timerlogs.txt', date("Y-m-d H:i:s")."   timer"."\n\n", FILE_APPEND);
+    //     // Stop the watcher after 5 iterations
+    //     // Ev::iteration() == 5 and $w->stop();
+    //     // Stop the watcher if further calls cause more than 10 iterations
+    //     // Ev::iteration() >= 10 and $w->stop();
+    // });
+    // Ev::run();
 
-    echo "ready";
+    // echo "ready";
 ?>
