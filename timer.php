@@ -32,4 +32,7 @@
         // Stop the watcher if further calls cause more than 10 iterations
         // Ev::iteration() >= 10 and $w->stop();
     });
+    Ev::run();
+
+    echo "ready";
 ?>
