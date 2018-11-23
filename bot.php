@@ -93,9 +93,8 @@
             $d_left = ($d_iee - $d_now) / 84000;
             // ReplyToMessage($msg_chatid, $d_left->format("Y-m-d H:i:s"), $msg_id);
             ReplyToMessage($msg_chatid, $d_iee->format("Y-m-d H:i:s")." \n ".$d_now->format("Y-m-d H:i:s")." \n ".$d_left, $msg_id);
-            // $d_iee->diff($d_now)->format("%d")
-            SendMessage($msg_chatid, ($d_now - $d_iee)." ".($d_iee - $d_time)); 
             SendMessage($msg_chatid, $d_now->diff($d_iee)->format("%a") ); 
+            SendMessage($msg_chatid, $d_iee->diff($d_now)->format("%a") ); 
             //
             exit(0);
         }
