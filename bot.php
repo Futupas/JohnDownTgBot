@@ -95,6 +95,7 @@
             ReplyToMessage($msg_chatid, $d_iee->format("Y-m-d H:i:s")." \n ".$d_now->format("Y-m-d H:i:s")." \n ".$d_left, $msg_id);
             // $d_iee->diff($d_now)->format("%d")
             SendMessage($msg_chatid, ($d_now - $d_iee)." ".($d_iee - $d_time)); 
+            SendMessage($msg_chatid, ($d_now->diff($d_iee))." ".($d_iee->diff($d_time))); 
             //
             exit(0);
         }
