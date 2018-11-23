@@ -90,11 +90,11 @@
         if ((in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words) || in_array("джонні", $words)) && strpos($readylower, 'зно') !== false) {
             $d_iee = new DateTime('2019-05-21T11:00:00');
             $d_now = new DateTime();
-            $d_left = $d_iee - $d_now;
+            $d_left = ($d_iee - $d_now) / 84000;
             // ReplyToMessage($msg_chatid, $d_left->format("Y-m-d H:i:s"), $msg_id);
             ReplyToMessage($msg_chatid, $d_iee->format("Y-m-d H:i:s")." \n ".$d_now->format("Y-m-d H:i:s")." \n ".$d_left, $msg_id);
             // $d_iee->diff($d_now)->format("%d")
-            SendMessage($msg_chatid, $d_iee->diff($d_now)->format("Y-m-d H:i:s")); 
+            SendMessage($msg_chatid, ($d_iee->diff($d_now))->format("H:i:s")); 
             //
             exit(0);
         }
