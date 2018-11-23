@@ -87,11 +87,10 @@
             exit(0);
         }
 
-        if ( strpos($readylower, '/days_to_zno') !== false ) {
+        if ( strpos($readylower, '/days_to_iee') !== false ) {
             $d_iee = new DateTime('2019-05-21T11:00:00');
             $d_now = new DateTime();
             SendMessage($msg_chatid, "До ЗНО осталось ".$d_iee->diff($d_now)->format("%a")." дней." ); 
-            //
             exit(0);
         }
 
