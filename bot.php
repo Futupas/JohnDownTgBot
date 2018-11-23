@@ -34,11 +34,15 @@
 
         // ON VOICE OR VIDEO
         if (property_exists($requestData->message, 'voice')) {
-            ReplyToMessage($msg_chatid, "Тебя научить пользоваться клавиатурой телефона? Засунь себе в жопу свой войс, уёбок.", $msg_id);
+            if ($requestData->message->voice->duration < 10) {
+                ReplyToMessage($msg_chatid, "Напиши, уебан.", $msg_id);
+            }
             exit(0);
         };
         if (property_exists($requestData->message, 'video_note')) {
-            ReplyToMessage($msg_chatid, "Всем противно смотреть на твоё ебло. нарисуй его на бумаге и обосри. И сюда больше не пиши.", $msg_id);
+            if ($requestData->message->video_note->duration < 10) {
+                ReplyToMessage($msg_chatid, "Спасибо, что показал(а) нам свое еблище.", $msg_id);
+            }
             exit(0);
         };
 
@@ -56,34 +60,6 @@
         $words = explode(" ", $readylower);
 
         // ON WORD EXISTS
-        
-        session_start();
-        if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
-            (in_array("запомни", $words)) ) {
-            if (property_exists($requestData->message, 'reply_to_message')) {
-                $memmsg = $words[2];
-                $_SESSION['zapomni_msg_'.$memmsg] = $requestData->message->reply_to_message->message_id;
-                $_SESSION['zapomni_chatid_'.$memmsg] = $requestData->message->reply_to_message->chat->id;
-
-                file_put_contents('logs.txt', '1if'."\n", FILE_APPEND);
-                file_put_contents('logs.txt', $memmsg."\n", FILE_APPEND);
-                file_put_contents('logs.txt', $_SESSION['zapomni_chatid_'.$memmsg]."\n\n", FILE_APPEND);
-            }
-        }
-        if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words)) &&
-        (in_array("скинь", $words) || in_array("кинь", $words) || in_array("вспомни", $words)) ) {
-            $memmsg = $words[2];
-            $memmessid = $_SESSION['zapomni_msg_'.$memmsg];
-            $oldchatid = $_SESSION['zapomni_chatid_'.$memmsg];
-
-            file_put_contents('logs.txt', '2if'."\n", FILE_APPEND);
-            file_put_contents('logs.txt', $memmsg."\n", FILE_APPEND);
-            file_put_contents('logs.txt', $_SESSION['zapomni_chatid_'.$memmsg]."\n\n", FILE_APPEND);
-            
-            $response = file_get_contents(
-                'https://api.telegram.org/bot'.getenv('bot_token').'/forwardMessage?chat_id='.$msg_chatid.'&from_chat_id='.$oldchatid.'&message_id='.$memmessid
-            );
-        }
 
         if (strpos($msg, "sendto11a ") === 0) {
             SendMessage(getenv('11a_id'), substr($msg, 10));
@@ -110,6 +86,16 @@
             SendMessage($msg_chatid, "Панчік кращий!");
             exit(0);
         }
+
+        if ((in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words) || in_array("джонні", $words)) && strpos($readylower, 'зно') !== false) {
+            $d_iee = new DateTime('2019-05-21T11:00:00');
+            $d_now = new DateTime();
+            $d_left = $d_iee - $d_now;
+            ReplyToMessage($msg_chatid, $d_left->format("Y-m-d H:i:s"), $msg_id);
+            //
+            exit(0);
+        }
+
         if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words) || in_array("джонні", $words)) &&
             (in_array("сказка", $words) || in_array("казка", $words) || in_array("сказку", $words) || in_array("казку", $words)) ) {
             $response = file_get_contents(
@@ -180,6 +166,7 @@
             ReplyToMessage($msg_chatid, "Будь ласка.", $msg_id);
             exit(0);
         }
+        
     } else {
         echo("This is Johny Down bot");
     }
