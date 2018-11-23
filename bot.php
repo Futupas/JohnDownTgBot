@@ -91,7 +91,7 @@
             $d_iee = new DateTime('2019-05-21T11:00:00');
             $d_now = new DateTime();
             $d_left = $d_iee - $d_now;
-            ReplyToMessage($msg_chatid, $d_left, $msg_id);
+            ReplyToMessage($msg_chatid, $d_iee." \n ".$d_now." \n ".$d_left, $msg_id);
             //
             exit(0);
         }
