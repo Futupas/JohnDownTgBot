@@ -194,7 +194,7 @@
             exit(0);
         }
         if (in_array("вікі", $words)) {
-            $query = str_replace("вики", "", $msg);
+            $query = str_replace("вікі", "", $msg);
             $getjson = file_get_contents('https://uk.wikipedia.org/w/api.php?action=opensearch&prop=info&format=json&inprop=url&search='.urlencode($query));
             file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?chat_id='.$chatid.'&text='.$query);
             $resultwiki = json_decode($getjson);
@@ -208,7 +208,7 @@
             exit(0);
         }
         if (in_array("wiki", $words)) {
-            $query = str_replace("вики", "", $msg);
+            $query = str_replace("wiki", "", $msg);
             $getjson = file_get_contents('https://en.wikipedia.org/w/api.php?action=opensearch&prop=info&format=json&inprop=url&search='.urlencode($query));
             file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?chat_id='.$chatid.'&text='.$query);
             $resultwiki = json_decode($getjson);
