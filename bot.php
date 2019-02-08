@@ -188,9 +188,21 @@
             $title1 = $resultwiki[1][0];
             $content1 = $resultwiki[2][0];
             $link1 = $resultwiki[3][0];
+            $message1 = "*".$title1."* %0A".$content1." %0A"."[Википедия](".$link1.")";
+            file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?parse_mode=Markdown&disable_web_page_preview=true&chat_id='.$msg_chatid.'&text='.$message1);
+            
+            $title2 = $resultwiki[1][0];
+            $content2 = $resultwiki[2][0];
+            $link2 = $resultwiki[3][0];
+            $message2 = "*".$title2."* %0A".$content2." %0A"."[Википедия](".$link2.")";
+            file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?parse_mode=Markdown&disable_web_page_preview=true&chat_id='.$msg_chatid.'&text='.$message2);
+            
+            $title3 = $resultwiki[1][0];
+            $content3 = $resultwiki[2][0];
+            $link3 = $resultwiki[3][0];
+            $message3 = "*".$title3."* %0A".$content3." %0A"."[Википедия](".$link3.")";
+            file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?parse_mode=Markdown&disable_web_page_preview=true&chat_id='.$msg_chatid.'&text='.$message3);
 
-            $message = "*".$title1."* %0A".$content1." %0A"."[Википедия](".$link1.")";
-            $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?parse_mode=Markdown&disable_web_page_preview=true&chat_id='.$msg_chatid.'&text='.$message);
             exit(0);
         }
         if (in_array("вікі", $words)) {
