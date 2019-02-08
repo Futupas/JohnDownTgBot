@@ -188,7 +188,7 @@
             $content1 = $resultwiki[2][0];
             $link1 = $resultwiki[3][0];
 
-            $message = "*".$title1."*  ".$content1;
+            $message = "*".$title1."* \n".$content1;
             // $message = "**".$title1."**\r\n".$content1."\r\n"."[Wikipedia](".$link1.")";
             $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?parse_mode=Markdown&chat_id='.$msg_chatid.'&text='.$message);
             exit(0);
