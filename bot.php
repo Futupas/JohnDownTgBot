@@ -92,7 +92,7 @@
             if (property_exists($requestData->message, 'reply_to_message')) {
                 $pinid = $requestData->message->reply_to_message->message_id;
                 $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/pinChatMessage?chat_id='.$msg_chatid.'&message_id='.$pinid);
-                $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?chat_id='.$msg_chatid.'&text=pinned '.$pinid);
+                // $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?chat_id='.$msg_chatid.'&text=pinned '.$pinid);
             };
             exit(0);
         }
