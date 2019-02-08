@@ -21,6 +21,8 @@
             'https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?chat_id='.$chatid.'&text='.$text.'&reply_to_message_id='.$msgtoreply
         );
     };
+    // function StringContains($str, )
+
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $requestString = file_get_contents('php://input');
@@ -86,6 +88,17 @@
             SendMessage($msg_chatid, "Панчік кращий!");
             exit(0);
         }
+        if (in_array("пин", $words) || in_array("pin", $words)) {
+            if (property_exists($requestData->message, 'reply_to_message')) {
+                $pinid = $requestData->message->reply_to_message->id;
+                $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/pinChatMessage?chat_id='.$msg_chatid.'&message_id='.$pinid);
+            };
+            exit(0);
+        }
+        if ((in_array("унпин", $words) || in_array("анпин", $words) || in_array("unpin", $words)) && in_array("джонни", $words))  {
+            $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/unpinChatMessage?chat_id='.$msg_chatid);
+            exit(0);
+        }
 
         if ( strpos($readylower, '/days_to_iee') !== false ) {
             $d_iee = new DateTime('2019-05-21T11:00:00');
@@ -94,20 +107,20 @@
             exit(0);
         }
 
-        if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words) || in_array("джонні", $words)) &&
-            (in_array("сказка", $words) || in_array("казка", $words) || in_array("сказку", $words) || in_array("казку", $words)) ) {
-            $response = file_get_contents(
-                'https://api.telegram.org/bot'.getenv('bot_token').'/sendAudio?chat_id='.$msg_chatid.'&audio=CQADAgADMgIAAqG5mUlzxUSxeBo4YQI'
-            );
-            exit(0);
-        }
-        if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words) || in_array("джонні", $words)) &&
-            (in_array("история", $words) || in_array("историю", $words) || in_array("історія", $words) || in_array("історію", $words)) ) {
-            $response = file_get_contents(
-                'https://api.telegram.org/bot'.getenv('bot_token').'/sendVoice?chat_id='.$msg_chatid.'&voice=CQADAgADMwIAAqG5mUmxJU-Lfr2NogI'
-            );
-            exit(0);
-        }
+        // if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words) || in_array("джонні", $words)) &&
+        //     (in_array("сказка", $words) || in_array("казка", $words) || in_array("сказку", $words) || in_array("казку", $words)) ) {
+        //     $response = file_get_contents(
+        //         'https://api.telegram.org/bot'.getenv('bot_token').'/sendAudio?chat_id='.$msg_chatid.'&audio=CQADAgADMgIAAqG5mUlzxUSxeBo4YQI'
+        //     );
+        //     exit(0);
+        // }
+        // if ( (in_array("джон", $words) || in_array("джонни", $words) || in_array("даун", $words) || in_array("джонні", $words)) &&
+        //     (in_array("история", $words) || in_array("историю", $words) || in_array("історія", $words) || in_array("історію", $words)) ) {
+        //     $response = file_get_contents(
+        //         'https://api.telegram.org/bot'.getenv('bot_token').'/sendVoice?chat_id='.$msg_chatid.'&voice=CQADAgADMwIAAqG5mUmxJU-Lfr2NogI'
+        //     );
+        //     exit(0);
+        // }
         if ($readylower == "даун" || $readylower == "джон" || $readylower == "джонни" || $readylower == "down" || $readylower == "джонні") {
             SendMessage($msg_chatid, "Что тебе, сука, надо?");
             exit(0);
