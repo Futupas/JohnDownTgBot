@@ -184,13 +184,12 @@
             $getjson = file_get_contents('https://ru.wikipedia.org/w/api.php?action=opensearch&prop=info&format=json&inprop=url&search='.urlencode($query));
             file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?chat_id='.$chatid.'&text='.$query);
             $resultwiki = json_decode($getjson);
+            
             $title1 = $resultwiki[1][0];
             $content1 = $resultwiki[2][0];
             $link1 = $resultwiki[3][0];
 
-            // $message = "*".$title1."* %0A".$content1;
             $message = "*".$title1."* %0A".$content1." %0A"."[Wikipedia](".$link1.")";
-            // $message = "**".$title1."**\r\n".$content1."\r\n"."[Wikipedia](".$link1.")";
             $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?parse_mode=Markdown&disable_web_page_preview=true&chat_id='.$msg_chatid.'&text='.$message);
             exit(0);
         }
