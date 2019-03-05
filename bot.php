@@ -36,13 +36,19 @@
 
         // ON VOICE OR VIDEO
         if (property_exists($requestData->message, 'voice')) {
-            if ($requestData->message->voice->duration < 10) {
+            if ($requestData->message->voice->duration < 2) {
+                $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/deleteMessage?chat_id='.$msg_chatid.'&message_id='.$msg_id);
+            }
+            else if ($requestData->message->voice->duration < 10) {
                 ReplyToMessage($msg_chatid, "Напиши, уебан.", $msg_id);
             }
             exit(0);
         };
         if (property_exists($requestData->message, 'video_note')) {
-            if ($requestData->message->video_note->duration < 10) {
+            if ($requestData->message->video_note->duration < 2) {
+                $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/deleteMessage?chat_id='.$msg_chatid.'&message_id='.$msg_id);
+            }
+            else if ($requestData->message->video_note->duration < 10) {
                 ReplyToMessage($msg_chatid, "Спасибо, что показал(а) нам свое еблище.", $msg_id);
             }
             exit(0);
