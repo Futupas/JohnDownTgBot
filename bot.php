@@ -109,7 +109,7 @@
                 
                 SendMessage($msg_chatid, '['.$requestData->message->from->first_name.' '.
                             $requestData->message->from->last_name.'](tg://user?id='.
-                            $requestData->message->from->id.')'.' pinned "'.$requestData->message->text.
+                            $requestData->message->from->id.')'.' pinned "'.$requestData->message->reply_to_message->text.
                             '"&parse_mode=Markdown'); 
             };
             exit(0);
