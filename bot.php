@@ -53,12 +53,12 @@
             }
             exit(0);
         };
-        if (property_exists($requestData->message, 'pinned_message')) {
-            if ($requestData->message->from->id == 636469447) { //if bot pinned msg
-                $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/deleteMessage?chat_id='.$msg_chatid.'&message_id='.$msg_id);
-            }
-            exit(0);
-        };
+        // if (property_exists($requestData->message, 'pinned_message')) {
+        //     if ($requestData->message->from->id == 636469447) { //if bot pinned msg
+        //         //$response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/deleteMessage?chat_id='.$msg_chatid.'&message_id='.$msg_id);
+        //     }
+        //     exit(0);
+        // };
 
         $msg = $requestData->message->text;
         $readymsg = strtolower($msg);
@@ -104,13 +104,13 @@
             if (property_exists($requestData->message, 'reply_to_message')) {
                 $pinid = $requestData->message->reply_to_message->message_id;
                 $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/pinChatMessage?chat_id='.$msg_chatid.'&message_id='.$pinid);
-                $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/deleteMessage?chat_id='.$msg_chatid.'&message_id='.$msg_id);
+                //$response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/deleteMessage?chat_id='.$msg_chatid.'&message_id='.$msg_id);
                 // $response = file_get_contents('https://api.telegram.org/bot'.getenv('bot_token').'/sendMessage?chat_id='.$msg_chatid.'&text=pinned '.$pinid);
                 
-                SendMessage($msg_chatid, '['.$requestData->message->from->first_name.' '.
-                            $requestData->message->from->last_name.'](tg://user?id='.
-                            $requestData->message->from->id.')'.' pinned "'.$requestData->message->reply_to_message->text.
-                            '"&parse_mode=Markdown'); 
+                // SendMessage($msg_chatid, '['.$requestData->message->from->first_name.' '.
+                //             $requestData->message->from->last_name.'](tg://user?id='.
+                //             $requestData->message->from->id.')'.' pinned "'.$requestData->message->reply_to_message->text.
+                //             '"&parse_mode=Markdown'); 
             };
             exit(0);
         }
