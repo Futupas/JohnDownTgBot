@@ -4,8 +4,8 @@ $requeststr = 'https://api.telegram.org/bot'.$_GET['bot_token'].'/sendMessage?ch
 $requeststr = htmlspecialchars_decode($requeststr);
 echo $requeststr;
 
-echo $requeststr;
-// file_get_contents();
+// echo $requeststr;
+file_get_contents($requeststr);
 
 
 
